@@ -17,15 +17,30 @@ export interface Exercise {
   name: string;
   muscle_group: 'chest' | 'back' | 'shoulders' | 'arms' | 'legs' | 'core' | 'cardio' | 'full_body' | null;
   description: string | null;
+  is_unilateral: boolean;
+  tracking_type: 'reps' | 'time' | 'distance' | 'reps_and_time';
   created_by: string | null;
   created_at: string;
   updated_at: string;
 }
 
 export interface WorkoutSet {
-  reps: number;
-  weight: number;
+  reps?: number;
+  reps_left?: number;
+  reps_right?: number;
+  weight?: number;
+  weight_left?: number;
+  weight_right?: number;
+  plates?: number;
+  duration_seconds?: number;
   unit: 'kg' | 'lb';
+}
+
+export interface Methodology {
+  id: string;
+  name: string;
+  description: string | null;
+  created_at: string;
 }
 
 export interface WorkoutLog {
@@ -34,6 +49,7 @@ export interface WorkoutLog {
   exercise_id: string;
   performed_at: string;
   sets: WorkoutSet[];
+  methodology: string | null;
   notes: string | null;
   created_at: string;
   updated_at: string;
@@ -41,6 +57,14 @@ export interface WorkoutLog {
   exercise?: Exercise;
   profile?: Profile;
 }
+
+// Tracking types for exercises
+export const trackingTypes = [
+  { value: 'reps', label: 'Repeticiones' },
+  { value: 'time', label: 'Tiempo (segundos)' },
+  { value: 'distance', label: 'Distancia' },
+  { value: 'reps_and_time', label: 'Reps + Tiempo' }
+] as const;
 
 export interface Recipe {
   id: string;
