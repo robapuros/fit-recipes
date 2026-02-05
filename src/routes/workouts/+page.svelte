@@ -130,7 +130,10 @@
                 {/if}
               </div>
             </div>
-            <button class="btn btn-sm btn-danger" on:click={() => deleteWorkout(workout.id)}>🗑️</button>
+            <div class="workout-actions">
+              <a href="/workouts/{workout.id}" class="btn btn-sm btn-secondary">✏️</a>
+              <button class="btn btn-sm btn-danger" on:click={() => deleteWorkout(workout.id)}>🗑️</button>
+            </div>
           </div>
           
           <div class="sets-summary">
@@ -212,6 +215,11 @@
     display: flex;
     gap: 0.75rem;
     align-items: flex-start;
+  }
+
+  .workout-actions {
+    display: flex;
+    gap: 0.25rem;
   }
 
   .exercise-order {

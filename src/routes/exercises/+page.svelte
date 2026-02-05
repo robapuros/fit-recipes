@@ -251,9 +251,12 @@
               {/if}
             </div>
           </div>
-          {#if exercise.created_by === $auth.user?.id}
-            <button class="btn btn-sm btn-danger" on:click={() => deleteExercise(exercise.id)}>🗑️</button>
-          {/if}
+          <div class="exercise-actions">
+            <a href="/exercises/{exercise.id}" class="btn btn-sm btn-secondary">✏️</a>
+            {#if exercise.created_by === $auth.user?.id}
+              <button class="btn btn-sm btn-danger" on:click={() => deleteExercise(exercise.id)}>🗑️</button>
+            {/if}
+          </div>
         </li>
       {/each}
     </ul>
@@ -367,5 +370,10 @@
     font-size: 0.7rem;
     padding: 0.15rem 0.4rem;
     background: var(--color-bg-input);
+  }
+
+  .exercise-actions {
+    display: flex;
+    gap: 0.25rem;
   }
 </style>

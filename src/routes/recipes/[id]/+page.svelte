@@ -46,7 +46,10 @@
   {:else if recipe}
     <header class="page-header">
       <a href="/recipes" class="btn btn-sm btn-secondary">← Recetas</a>
-      <button class="btn btn-sm btn-danger" on:click={deleteRecipe}>🗑️</button>
+      <div class="header-actions">
+        <a href="/recipes/{recipe.id}/edit" class="btn btn-sm btn-secondary">✏️ Editar</a>
+        <button class="btn btn-sm btn-danger" on:click={deleteRecipe}>🗑️</button>
+      </div>
     </header>
 
     <h1>{recipe.title}</h1>
@@ -112,6 +115,11 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 0.5rem;
   }
 
   h1 {
