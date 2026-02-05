@@ -20,10 +20,16 @@
   });
 
   async function loadExercises() {
-    const { data } = await supabase
+    const { data, error, status } = await supabase
       .from('exercises')
       .select('*')
       .order('name');
+    
+    console.log('Load exercises:', { data, error, status });
+    
+    if (error) {
+      console.error('Load error:', error);
+    }
     
     exercises = data || [];
     loading = false;
@@ -32,19 +38,40 @@
   let formError = '';
 
   async function createExercise() {
-    if (!newExercise.name || !$auth.user) return;
-    
     formError = '';
+    
+    // Debug auth state
+    console.log('Auth user:', $auth.user);
+    console.log('Auth profile:', $auth.profile);
+    
+    if (!$auth.user) {
+      formError = 'Error: No has iniciado sesión';
+      return;
+    }
+    
+    if (!newExercise.name) {
+      formError = 'Error: El nombre es obligatorio';
+      return;
+    }
 
-    const { error } = await supabase.from('exercises').insert({
+    const payload = {
       name: newExercise.name,
       muscle_group: newExercise.muscle_group || null,
       description: newExercise.description || null,
       created_by: $auth.user.id
-    });
+    };
+    
+    console.log('Inserting exercise:', payload);
+
+    const { data, error, status, statusText } = await supabase
+      .from('exercises')
+      .insert(payload)
+      .select();
+
+    console.log('Response:', { data, error, status, statusText });
 
     if (error) {
-      formError = `Error: ${error.message} (${error.code})`;
+      formError = `Error ${status}: ${error.message} (${error.code})`;
       console.error('Supabase error:', error);
     } else {
       newExercise = { name: '', muscle_group: '', description: '' };
