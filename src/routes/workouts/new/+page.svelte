@@ -123,7 +123,7 @@
       <div class="loading"><div class="spinner"></div></div>
     {:else if filteredExercises.length === 0}
       <div class="empty-state">
-        <p>No hay ejercicios. <a href="/exercises/new">Crea uno</a></p>
+        <p>No hay ejercicios. <a href="/exercises?new=true">Crea uno</a></p>
       </div>
     {:else}
       <ul class="list">
@@ -215,4 +215,3 @@
     font-size: 0.875rem;
   }
 </style>
-// Force rebuild Thu Feb  5 09:39:55 UTC 2026
