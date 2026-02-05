@@ -50,12 +50,22 @@ export interface WorkoutLog {
   performed_at: string;
   sets: WorkoutSet[];
   methodology: string | null;
+  intensity: string | null;
+  rest_seconds: number | null;
+  order: number;
   notes: string | null;
   created_at: string;
   updated_at: string;
   // Joined fields
   exercise?: Exercise;
   profile?: Profile;
+}
+
+export interface Intensity {
+  id: string;
+  name: string;
+  description: string | null;
+  percentage_range: string | null;
 }
 
 // Tracking types for exercises
