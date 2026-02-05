@@ -53,7 +53,7 @@
 <div class="page">
   <header class="page-header">
     <h1>Mis Entrenos</h1>
-    <a href="/workouts/new" class="btn btn-primary btn-sm">+ Nuevo</a>
+    <a href="/exercises?new=true" class="btn btn-primary btn-sm">+ Nuevo</a>
   </header>
 
   <div class="date-picker">
@@ -76,7 +76,7 @@
     <div class="empty-state">
       <div class="empty-state-icon">📝</div>
       <p>No hay entrenos este día</p>
-      <a href="/workouts/new" class="btn btn-primary">Registrar entreno</a>
+      <a href="/exercises?new=true" class="btn btn-primary">Crear ejercicio</a>
     </div>
   {:else}
     <div class="workout-list">

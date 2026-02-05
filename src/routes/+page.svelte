@@ -61,9 +61,9 @@
   </header>
 
   <div class="quick-actions">
-    <a href="/workouts/new" class="quick-action">
+    <a href="/exercises?new=true" class="quick-action">
       <span class="quick-action-icon">🏋️</span>
-      <span class="quick-action-label">Log Entreno</span>
+      <span class="quick-action-label">Nuevo Ejercicio</span>
     </a>
     <a href="/recipes" class="quick-action">
       <span class="quick-action-icon">📖</span>
@@ -81,7 +81,7 @@
         <div class="empty-state">
           <div class="empty-state-icon">🎯</div>
           <p>No has entrenado hoy. ¡Es un buen día para empezar!</p>
-          <a href="/workouts/new" class="btn btn-primary">Registrar entreno</a>
+          <a href="/exercises?new=true" class="btn btn-primary">Crear ejercicio</a>
         </div>
       </div>
     {:else}

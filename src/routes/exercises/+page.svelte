@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { page } from '$app/stores';
   import { auth } from '$lib/stores/auth';
   import { supabase, type Exercise, muscleGroups } from '$lib/supabase';
 
@@ -8,6 +9,11 @@
   let showForm = false;
   let searchQuery = '';
   let selectedMuscle = '';
+
+  // Auto-open form if ?new=true in URL
+  $: if ($page.url.searchParams.get('new') === 'true') {
+    showForm = true;
+  }
 
   let newExercise = {
     name: '',
