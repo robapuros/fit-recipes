@@ -29,8 +29,12 @@
     loading = false;
   }
 
+  let formError = '';
+
   async function createExercise() {
     if (!newExercise.name || !$auth.user) return;
+    
+    formError = '';
 
     const { error } = await supabase.from('exercises').insert({
       name: newExercise.name,
@@ -39,7 +43,10 @@
       created_by: $auth.user.id
     });
 
-    if (!error) {
+    if (error) {
+      formError = `Error: ${error.message} (${error.code})`;
+      console.error('Supabase error:', error);
+    } else {
       newExercise = { name: '', muscle_group: '', description: '' };
       showForm = false;
       await loadExercises();
@@ -76,6 +83,9 @@
 
   {#if showForm}
     <div class="card form-card">
+      {#if formError}
+        <div class="message message-error">{formError}</div>
+      {/if}
       <div class="form-group">
         <label class="form-label">Nombre</label>
         <input type="text" class="form-input" bind:value={newExercise.name} placeholder="Ej: Press banca" />
