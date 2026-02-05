@@ -61,7 +61,6 @@ vercel
 ```
 
 Set environment variables in Vercel dashboard.
-Trying out the vercel deployment
 
 ### Docker
 
