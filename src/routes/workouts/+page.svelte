@@ -23,7 +23,6 @@
       .select('*, exercise:exercises(*)')
       .eq('user_id', $auth.user.id)
       .eq('performed_at', selectedDate)
-      .order('order', { ascending: true })
       .order('created_at', { ascending: true });
     
     if (!error) {

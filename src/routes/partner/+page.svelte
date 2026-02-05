@@ -35,14 +35,17 @@
   async function loadWorkouts() {
     if (!partner) return;
 
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('workout_logs')
       .select('*, exercise:exercises(*)')
       .eq('user_id', partner.id)
       .eq('performed_at', selectedDate)
-      .order('order', { ascending: true })
       .order('created_at', { ascending: true });
 
+    if (error) {
+      console.error('Error loading partner workouts:', error);
+    }
+    
     workouts = data || [];
   }
 
